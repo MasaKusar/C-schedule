@@ -1,0 +1,43 @@
+---
+title: "Untitled"
+author: "Masa Kusar"
+date: "23 Januar 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+DT <- read.csv("./Petric.csv")
+
+vmesni <- NULL
+
+for (i in 2:ncol(DT)){
+  if (DT[[1, i]] != "dopoldan"){
+    if (i <= 9){
+      Date = paste("02/0", as.character(i-1), "/2018", sep="")
+    }
+    else if (i > 9){
+      Date = paste("02/", as.character(i-1), "/2018", sep="")
+    }
+    vnos <- cbind(as.character(DT[1, i]), Date, "8:00 AM", TRUE)
+    vmesni <- rbind(vmesni, vnos)
+  }
+  if (DT[[1, i]] == "dezurna"){
+    if (i <= 9){
+      Date = paste("02/0", as.character(i), "/2018", sep="")
+    }
+    else if (i > 9){
+      Date = paste("02/", as.character(i), "/2018", sep="")
+    }
+    vnos <- cbind("po dezurni", Date, "8:00 AM", TRUE)
+    vmesni <- rbind(vmesni, vnos)
+  }
+}
+
+colnames(vmesni) <- c("Subject", "Start Date", "Start Time", "All Day Event")
+
+write.csv(vmesni, file="Petric-februar.csv", row.names=TRUE)
+```

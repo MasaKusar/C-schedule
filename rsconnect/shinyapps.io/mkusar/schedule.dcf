@@ -1,0 +1,12 @@
+name: schedule
+title: schedule
+username:
+account: mkusar
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 253826
+bundleId: 1171792
+url: https://mkusar.shinyapps.io/schedule/
+when: 1515671518.69657
+asMultiple: FALSE
+asStatic: FALSE
